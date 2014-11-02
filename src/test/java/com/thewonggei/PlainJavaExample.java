@@ -8,8 +8,10 @@ import java.util.regex.Pattern;
 import org.junit.Test;
 
 /**
- * @author Nick Watts
+ * This test suite demonstrates how to test a regular expression using only
+ * the standard Java API and JUnit.
  * 
+ * @author Nick Watts
  */
 public class PlainJavaExample {
 
@@ -40,6 +42,11 @@ public class PlainJavaExample {
 				.matcher("Z.F.T. is responsible for the strange pattern of "
 						+ "events. Fringe division is discovering 'The Pattern'.");
 		
+		/*
+		 * You must loop through the matched substrings (which you get by
+		 * calling Matcher.group() or Matcher.group(0)) to test specific matches.
+		 * The loop counter keeps track of the position of the match. 
+		 */
 		for( int i=1; matcher.find(); i++ ) {
 			if( i == 1 ) {
 				assertEquals("strange pattern", matcher.group());
@@ -57,6 +64,12 @@ public class PlainJavaExample {
 				.matcher("Z.F.T. is responsible for the strange pattern of "
 						+ "events. Fringe division is discovering 'The Pattern'.");
 		
+		/*
+		 * You must loop through the matched substrings and then validate the
+		 * text captured in the capture group by calling Matcher.group(n) where
+		 * n is the number of the capture group you want to test.
+		 * The loop counter keeps track of the position of the match. 
+		 */
 		for( int i=1; matcher.find(); i++ ) {
 			if( i == 1 ) {
 				assertEquals("strange", matcher.group(1));
